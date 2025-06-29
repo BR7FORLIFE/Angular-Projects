@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Table } from "./table/table";
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
+  selector: 'app-template',
+  imports: [RouterOutlet, Table],
   templateUrl: './app.html',
-  styleUrl: './app.css'
 })
 export class App {
-  protected title = 'memory-match-angular';
+  protected title = 'Memory Game!';
+  protected description = 'this is memorama game, enjoy thinking!';
 }
