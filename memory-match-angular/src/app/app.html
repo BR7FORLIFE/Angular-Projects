@@ -1,10 +1,14 @@
-<section class="container size-96">
-  <h1 class="text-2xl font-mono font-bold text-white text-center">{{ title }}</h1>
-  <p class="text-lg font-mono font-bold text-white text-center">{{ description }}</p>
-
+<section class="w-full h-auto flex flex-col gap-12">
+  <article>
+    <h1 class="text-2xl font-mono font-bold text-white text-center">
+      {{ title }}
+    </h1>
+    <p class="text-lg font-mono font-bold text-white text-center">
+      {{ description }}
+    </p>
+  </article>
   <!--aca va el componente-->
   <app-table></app-table>
-
 </section>
 
 <router-outlet />
