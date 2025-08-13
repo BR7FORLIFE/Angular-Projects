@@ -75,17 +75,30 @@ const infoSlug: Slug[] = [
   templateUrl: './table.html',
 })
 export class Table {
-  protected datalist = infoSlug;
+  protected datalist = this.shuffleArray([
+    ...infoSlug, ...infoSlug
+  ]);
   protected interrogationImage =
     'https://cdn-icons-png.flaticon.com/512/5405/5405894.png';
 
-  protected cards: (string | Slug)[] = Array(this.datalist.length).fill(this.interrogationImage)
+  protected cards: (string | Slug)[] = Array(this.datalist.length).fill(
+    this.interrogationImage
+  );
 
-  revealImage(indexTarget: number){
-    return this.cards[indexTarget] = this.datalist[indexTarget]
+  revealImage(indexTarget: number) {
+    return (this.cards[indexTarget] = this.datalist[indexTarget]);
   }
 
-  getImage($index: number): Slug{
-    return this.revealImage($index)
+  isSlug(card: string | Slug): card is Slug {
+    return (card as Slug).imagesrc !== undefined;
+  }
+
+  shuffleArray<T>(array: T[]): T[] {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
   }
 }
