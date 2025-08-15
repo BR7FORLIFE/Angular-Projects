@@ -1,0 +1,17 @@
+src/app/
+ ├── core/
+ │    ├── layout/       ← Layouts generales
+ │    ├── services/     ← Servicios globales
+ │    ├── guards/       ← Guardias
+ │    └── interceptors/
+ │
+ ├── features/          ← Páginas y componentes específicos del negocio
+ │    ├── playlist/
+ │    ├── search/
+ │    ├── player/
+ │
+ ├── shared/            ← Componentes y utilidades reutilizables
+ │    ├── ui/
+ │    ├── pipes/
+ │    ├── directives/
+ │    └── utils/
