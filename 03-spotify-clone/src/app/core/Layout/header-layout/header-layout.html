@@ -1,21 +1,55 @@
-<header class="w-full h-auto flex flex-row gap-20">
-  <picture class="w-full h-auto flex justify-center items-center">
-    <img src="assets/icons/spotify-logo.png" alt="spotity logo" class="w-auto h-12 bg-cover" />
+<header class="w-full h-auto flex flex-row gap-20 justify-center items-center pt-2">
+  <picture class="w-auto h-auto flex justify-center items-center">
+    <img src="assets/icons/spotify-logo.png" alt="spotity logo" class="w-auto h-10 bg-cover" />
   </picture>
-  <section class="w-full h-auto">
+  <section class="w-auto h-auto flex flex-row justify-center items-center gap-3">
     <picture class="w-full"
       ><img
         src="assets/icons/home.png"
         alt="home logo"
-        class="size-12 p-2 rounded-full bg-gray-600/60"
+        class="size-12 p-3 rounded-full bg-[#2a2a2a]"
     /></picture>
     <div class="relative w-full">
       <input
         type="text"
         placeholder="What do you want to play?"
-        class="w-full p-3 bg-gray-600/60 rounded-3xl text-xl font-ibm"
+        class="w-96 h-auto py-2 pl-12 bg-[#2a2a2a] rounded-3xl text-lg font-ibm text-white/65 font-mono"
       />
+      <img
+        src="assets/icons/search.png"
+        alt="search image"
+        class="absolute size-6 inset-0 top-[10px] left-2 opacity-40"
+      />
+      <span
+        class="absolute inline-flex flex-row justify-center items-center inset-0 text-2xl -top-2 -right-72 z-10 pointer-events-none"
+        >|
+        <img
+          src="assets/icons/checklist.png"
+          alt="checklist image"
+          class="w-auto h-6 mt-[5px] ml-[4px]"
+      /></span>
     </div>
   </section>
-  <section></section>
+  <section class="inline-flex flex-row justify-center items-center gap-8">
+    <a href="#" class="px-4 py-[7px] bg-white text-black text-sm font-bold rounded-xl"
+      >Explore Premium</a
+    >
+    <a href="#" class="inline-flex gap-2 size-auto opacity-75"
+      ><img src="assets/icons/download.png" alt="download image" class="size-6" /><span
+        class="w-24 font-semibold"
+        >Install App</span
+      ></a
+    >
+    <div class="flex items-center justify-center gap-5">
+      <button>
+        <img src="assets/icons/notification.png" alt="notification image" class="size-6" />
+      </button>
+      <button><img src="assets/icons/people.png" alt="comunity image" class="w-auto h-9" /></button>
+      <button
+        class="size-8 bg-white text-black text-center font-semibold rounded-full border-2 border-blue-500"
+      >
+        B
+      </button>
+    </div>
+  </section>
 </header>
