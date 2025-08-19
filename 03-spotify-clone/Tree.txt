@@ -15,3 +15,41 @@ src/app/
  │    ├── pipes/
  │    ├── directives/
  │    └── utils/
+
+
+ src/
+├─ app/                          → Aquí vive toda la lógica de tu aplicación
+│   ├─ core/                     → 🔑 Módulo central (se importa solo una vez en AppModule)
+│   │   ├─ guards/               → Guards de rutas (AuthGuard, RoleGuard…)
+│   │   ├─ interceptors/         → Interceptores de HTTP (auth, errores, logging…)
+│   │   ├─ services/             → Servicios globales (AuthService, ApiService…)
+│   │   ├─ layouts/              → Componentes de layout global (navbar, aside, footer…)
+│   │   └─ core.module.ts        → Define qué se exporta del Core (NO reusar en features)
+│   │
+│   ├─ shared/                   → ♻️ Módulo compartido (reutilizable en toda la app)
+│   │   ├─ components/           → Componentes comunes (botones, modales, tablas…)
+│   │   ├─ directives/           → Directivas reutilizables
+│   │   ├─ pipes/                → Pipes comunes (capitalize, truncate, dateFormat…)
+│   │   └─ shared.module.ts      → Exporta todo lo común (se importa en cualquier feature)
+│   │
+│   ├─ features/                 → 🧩 Módulos de negocio (cada área de la app)
+│   │   ├─ auth/                 → Pantallas de login, register, reset password
+│   │   ├─ dashboard/            → Pantallas de dashboard
+│   │   ├─ profile/              → Pantallas de perfil de usuario
+│   │   └─ ...                   → Cada módulo es autocontenido (lazy loading recomendado)
+│   │
+│   ├─ app-routing.module.ts     → Rutas principales de la app
+│   ├─ app.component.ts          → Componente raíz
+│   └─ app.module.ts             → Módulo raíz
+│
+├─ assets/                       → Archivos estáticos (imágenes, JSON, íconos, fuentes…)
+├─ environments/                 → Configuración para distintos entornos
+│   ├─ environment.ts            → Config de desarrollo
+│   └─ environment.prod.ts       → Config de producción
+│
+├─ styles.css                    → Estilos globales (ahí entra Tailwind + fuentes)
+├─ angular.json                  → Configuración del CLI (build, assets, estilos…)
+├─ tailwind.config.js            → Config de Tailwind
+├─ tsconfig.json                 → Config de TypeScript
+└─ package.json                  → Dependencias y scripts
+
