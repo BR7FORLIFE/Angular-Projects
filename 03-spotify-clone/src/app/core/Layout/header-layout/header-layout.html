@@ -1,19 +1,23 @@
 <header class="w-full h-auto flex flex-row gap-20 justify-center items-center pt-2">
   <picture class="w-auto h-auto flex justify-center items-center">
-    <img src="assets/icons/spotify-logo.png" alt="spotity logo" class="w-auto h-10 bg-cover" />
+    <img
+      src="assets/icons/spotify-logo.png"
+      alt="spotity logo"
+      class="w-auto h-10 bg-cover transform hover:scale-110 duration-200 ease-in"
+    />
   </picture>
   <section class="w-auto h-auto flex flex-row justify-center items-center gap-3">
     <picture class="w-full"
       ><img
         src="assets/icons/home.png"
         alt="home logo"
-        class="size-12 p-3 rounded-full bg-[#2a2a2a]"
+        class="size-12 p-3 rounded-full bg-[#2a2a2a] transition hover:bg-gray-500 duration-200 ease-in"
     /></picture>
     <div class="relative w-full">
       <input
         type="text"
         placeholder="What do you want to play?"
-        class="w-96 h-auto py-2 pl-12 bg-[#2a2a2a] rounded-3xl text-lg font-ibm text-white/65 font-mono"
+        class="w-96 h-auto py-2 pl-12 bg-[#2a2a2a] rounded-3xl text-lg font-ibm text-white/65 font-mono transition hover:border-white duration-300 ease-linear"
       />
       <img
         src="assets/icons/search.png"
@@ -31,10 +35,14 @@
     </div>
   </section>
   <section class="inline-flex flex-row justify-center items-center gap-8">
-    <a href="#" class="px-4 py-[7px] bg-white text-black text-sm font-bold rounded-xl"
+    <a
+      href="#"
+      class="px-4 py-[7px] bg-white text-black text-sm font-bold rounded-xl transform hover:scale-110 duration-300 ease-in-out"
       >Explore Premium</a
     >
-    <a href="#" class="inline-flex gap-2 size-auto opacity-75"
+    <a
+      href="#"
+      class="inline-flex gap-2 size-auto opacity-75 transform hover:scale-110 duration-300 ease-in-out"
       ><img src="assets/icons/download.png" alt="download image" class="size-6" /><span
         class="w-24 font-semibold"
         >Install App</span
@@ -42,14 +50,24 @@
     >
     <div class="flex items-center justify-center gap-5">
       <button>
-        <img src="assets/icons/notification.png" alt="notification image" class="size-6" />
+        <img
+          src="assets/icons/notification.png"
+          alt="notification image"
+          class="size-6 transform hover:scale-110 duration-300 ease-in-out"
+        />
       </button>
-      <button><img src="assets/icons/people.png" alt="comunity image" class="w-auto h-9" /></button>
+      <button>
+        <img
+          src="assets/icons/people.png"
+          alt="comunity image"
+          class="w-auto h-9 transform hover:scale-110 duration-300 ease-in-out"
+        />
+      </button>
       <button
-        class="size-8 bg-white text-black text-center font-semibold rounded-full border-2 border-blue-500"
+        class="size-8 bg-white text-black text-center font-semibold rounded-full border-2 border-blue-500 transform hover:scale-110 duration-300 ease-in-out"
       >
         B
       </button>
     </div>
   </section>
-</header>
+</header> 

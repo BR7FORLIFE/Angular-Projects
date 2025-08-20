@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './main-layout.html',
 })
 export class MainLayout {
-
+  public isMusic = false
 }
