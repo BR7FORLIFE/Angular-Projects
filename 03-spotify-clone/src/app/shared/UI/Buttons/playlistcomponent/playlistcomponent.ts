@@ -1,6 +1,6 @@
-import { Component, Output , EventEmitter} from '@angular/core';
-import { listOfMusic } from '@app/core/constant/ListOfMusic';
-import { Song } from '@models/song.model';
+import { Component, Input } from '@angular/core';
+import { StructurePlaylist } from '../../../../models/playlist.model';
+import { Playlist } from '@services/Playlist.services';
 
 @Component({
   selector: 'playlistcomponent',
@@ -8,10 +8,11 @@ import { Song } from '@models/song.model';
   templateUrl: './playlistcomponent.html',
 })
 export class Playlistcomponent {
-  @Output() sendSongs = new EventEmitter<Song[]>();
-  public musics = listOfMusic;
+  @Input() public listOfSongs: StructurePlaylist[] = [];
 
-  getAllSongsByPlaylist(songs: Song[]) {
-    this.sendSongs.emit(songs);
+  constructor(private PlayerServices: Playlist) {}
+
+  loadPlayList(index: number) {
+    this.PlayerServices.setPlaylist(this.listOfSongs[index]);
   }
 }
