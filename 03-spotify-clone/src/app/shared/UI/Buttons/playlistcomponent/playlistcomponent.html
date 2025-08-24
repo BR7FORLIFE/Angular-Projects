@@ -1,11 +1,11 @@
-@for (music of musics; track $index) {
-<button class="inline-flex flex-row gap-1">
+@for (playlist of listOfSongs; track $index; let i = $index) {
+<button class="inline-flex flex-row gap-3 mb-4" (click)="loadPlayList(i)">
   <picture class="mr-3">
-    <img [src]="music.presentacionImage" alt="presentacion image" class="size-14 rounded-xl"/>
+    <img [src]="playlist.presentacionImage" alt="presentacion image" class="size-14 rounded-xl" />
   </picture>
   <div class="inline-flex flex-col justify-center items-center">
-    <span class="text-sm text-center text-white/80 font-semibold">{{ music.name }}</span>
-    <p class="text-sm text-center text-white/70 font-semibold">{{ music.description }}</p>
+    <span class="text-sm text-center text-white/80 font-semibold">{{ playlist.name }}</span>
+    <p class="text-sm text-center text-white/70 font-semibold">{{ playlist.description }}</p>
   </div>
 </button>
 }

@@ -10,7 +10,8 @@
       "@shared/*": ["app/shared/*"],
       "@models/*": ["app/models/*"],
       "@features/*": ["app/features/*"],
-      "@constant/*": ["app/core/constant/*"]
+      "@constant/*": ["app/core/constant/*"],
+      "@services/*":["app/core/services/*"]
     },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
