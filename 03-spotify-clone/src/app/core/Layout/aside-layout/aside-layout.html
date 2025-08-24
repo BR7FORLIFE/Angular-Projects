@@ -1,5 +1,5 @@
 <section
-  class="w-full h-full flex flex-col justify-start items-center gap-4 bg-[#121212] p-2 mt-8 ml-2 rounded-lg"
+  class="w-full h-full flex flex-col justify-start items-center gap-4 bg-[#121212] p-2 ml-2 rounded-lg"
 >
   <header class="w-full flex flex-row justify-between items-center px-4 gap-10">
     <span class="text-white text-sm text-center font-bold">Your Library</span>
@@ -30,7 +30,7 @@
   </div>
 
   <!--Aca ira el album de musica y si no hay album se coloca el mensaje que no hay-->
-  <section class="mt-5">
-    <playlistcomponent />
+  <section class="mt-5 ml-4">
+    <playlistcomponent [listOfSongs]="playlist"/>
   </section>
 </section>
