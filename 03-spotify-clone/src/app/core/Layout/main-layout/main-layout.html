@@ -1,6 +1,6 @@
 <section class="w-full h-full">
   @if(isActivePlaylist){
-  <player (playlistStateChange)="togglePlaylistState($event)" />
+  <player (playlistStateChange)="togglePlaylistState($event)"></player>
   }@else{
   <div class="w-full h-full inline-flex flex-col items-center justify-start mt-20">
     <img src="assets/icons/musical-note.png" alt="Music image" />
@@ -9,4 +9,4 @@
     >
   </div>
   }
-</section>
+</section>  
