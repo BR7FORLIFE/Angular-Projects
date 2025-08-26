@@ -1,8 +1,18 @@
 <section class="w-full h-full">
   @if (structurePlaylist) {
-  <article class="">
-    <picture><img [src]="structurePlaylist?.presentacionImage" alt="Image presentation" /></picture>
-    <div></div>
+  <article class="flex flex-row justify-start ml-5 mt-5">
+    <picture class="" [ngStyle]="{ 'box-shadow': '0 0 12px ' + Rgb }"
+      ><img
+        #imagePresentation
+        [src]="structurePlaylist?.presentacionImage"
+        alt="Image presentation"
+        class="w-72 h-auto object-cover rounded-xl"
+    /></picture>
+    <div class="ml-10 inline-flex flex-col items-start justify-center">
+      <span class="font-mono font-semibold">Public Playlist</span>
+      <h2 class="text-5xl text-center font-mono font-semibold">{{ structurePlaylist?.name }}</h2>
+      <span>BR7 °</span>
+    </div>
   </article>
   }
 </section>
