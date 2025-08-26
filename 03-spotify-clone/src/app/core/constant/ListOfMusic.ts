@@ -126,7 +126,7 @@ export const listOfMusic: StructurePlaylist[] = [
     id: 2,
     name: 'Esto deberia funcionar ',
     description: 'todas las canciones de morat',
-    presentacionImage: 'https://i.scdn.co/image/ab67616d0000b2730c929d54495f38b910f48643',
+    presentacionImage: 'https://rtvc-assets-radionica3.s3.amazonaws.com/s3fs-public/styles/articulo_760x422/public/field/image/article/calamaroa.jpg?itok=4k2d5vh_',
     songs: [
       {
         id: 1,
@@ -138,7 +138,7 @@ export const listOfMusic: StructurePlaylist[] = [
       {
         id: 2,
         description: 'Al aire de morat',
-        name: 'Al aire',
+        name: 'Al aire',  
         image: '',
         urlsong: '/assets/audio/Morat - Al Aire(MP3_70K).mp3',
       },
