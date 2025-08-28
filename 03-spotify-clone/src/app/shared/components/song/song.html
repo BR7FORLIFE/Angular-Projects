@@ -1,0 +1,40 @@
+<section class="w-full h-[300px] mt-10 overflow-y-auto flex flex-col gap-3">
+  @for (song of songs; track $index; let index = $index) {
+  <div
+    class="group flex flex-row justify-between items-center gap-3 py-2 px-1 mx-4 font-mono rounded-sm transition hover:text-black hover:bg-white/90 duration-200 delay-75 ease-in-out"
+  >
+    <!--parte izquierda-->
+    <section class="flex justify-center items-center gap-3">
+      <div class="inline-flex flex-row justify-center items-center gap-2">
+        <span class="w-5">{{ song.id }}</span>
+
+        <!--imagen de la previsualizacion de la canción-->
+        <div class="relative">
+          <img [src]="song.image" alt="image song" class="size-12 object-cover rounded-sm" />
+          <div
+            class="absolute opacity-0 top-3.5 left-3.5 transition group-hover:opacity-100 group-hover:delay-100 duration-200 scale-110 ease-in-out"
+          >
+            <img
+              src="assets/icons/triangule-right.png"
+              alt="triangule image"
+              class="size-5 object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="inline-flex flex-col">
+        <span class="opacity-90">{{ song.name }}</span>
+        <span class="opacity-70">{{ song.description }}</span>
+      </div>
+    </section>
+
+    <!--parte derecha-->
+    <div class="flex flex-row justify-between items-center gap-10 opacity-75">
+      <span>{{ song.album }}</span>
+      <span>{{ song.releaseDate }}</span>
+      <span>{{ song.duration }}</span>
+    </div>
+  </div>
+  }
+</section>
