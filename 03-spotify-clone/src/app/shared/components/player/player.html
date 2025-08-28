@@ -1,18 +1,42 @@
 <section class="w-full h-full">
   @if (structurePlaylist) {
-  <article class="flex flex-row justify-start ml-5 mt-5">
+  <article class="flex flex-row justify-start ml-5 mt-5 animate-fade-in-up">
     <picture class="" [ngStyle]="{ 'box-shadow': '0 0 12px ' + Rgb }"
       ><img
         #imagePresentation
+        crossorigin="anonymous"
         [src]="structurePlaylist?.presentacionImage"
         alt="Image presentation"
         class="w-72 h-auto object-cover rounded-xl"
     /></picture>
     <div class="ml-10 inline-flex flex-col items-start justify-center">
-      <span class="font-mono font-semibold">Public Playlist</span>
-      <h2 class="text-5xl text-center font-mono font-semibold">{{ structurePlaylist?.name }}</h2>
-      <span>BR7 °</span>
+      <div>
+        <span class="font-mono font-semibold">Public Playlist</span>
+        <h2 class="text-5xl text-center font-mono font-semibold">{{ structurePlaylist?.name }}</h2>
+        <span class="font-mono font-light">BR7 ° </span>
+      </div>
+
+      <section class="mt-10 inline-flex flex-row gap-5 justify-center items-center">
+        <div
+          class="relative size-12 rounded-full bg-green-500 transform transition hover:scale-110 hover:bg-green-300 duration-500 delay-100 ease-in-out"
+        >
+          <img
+            src="assets/icons/triangule-right.png"
+            alt="triangule play reproductor"
+            class="absolute size-4 top-4 left-4.5"
+          />
+        </div>
+        <img
+          src="assets/icons/download.png"
+          alt="download icon"
+          class="size-10 transform hover:scale-110 delay-100 duration-400 ease-in-out"
+        />
+      </section>
     </div>
   </article>
+
+  <Song />
+  <!--song component (para la musica)-->
+
   }
 </section>

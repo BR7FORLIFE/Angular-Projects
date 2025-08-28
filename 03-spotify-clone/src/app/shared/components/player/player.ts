@@ -8,17 +8,20 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core';
+
+
 import { Playlist } from '@services/Playlist.services';
 import { StructurePlaylist } from '@models/playlist.model';
 import { Subscription } from 'rxjs';
 import ColorThief from 'colorthief';
 import { NgStyle } from '@angular/common';
+import { SongComponent } from "../song/song";
 
 type RGB = `RGB(${string}, ${string}, ${string})`;
 
 @Component({
   selector: 'player',
-  imports: [NgStyle],
+  imports: [NgStyle, SongComponent],
   templateUrl: './player.html',
 })
 export class Player implements OnDestroy, OnInit {
@@ -36,7 +39,11 @@ export class Player implements OnDestroy, OnInit {
     this.subscription = this.playlist.playlist$.subscribe((newPlaylist) => {
       this.structurePlaylist = newPlaylist;
 
-      this.playlistStateChange.emit(!!newPlaylist);
+      Promise.resolve().then(() => {
+        if (this.structurePlaylist) { 
+          this.playlistStateChange.emit(true);
+        }
+      });
 
       // esperar a que Angular pinte el DOM antes de acceder al ViewChild
       setTimeout(() => {
@@ -60,7 +67,6 @@ export class Player implements OnDestroy, OnInit {
     const colorthief = new ColorThief();
     const [red, green, blue] = colorthief.getColor($img);
     this.Rgb = `RGB(${red}, ${green}, ${blue})`;
-    console.log(this.Rgb);
     this.cdr.detectChanges();
   }
 }
