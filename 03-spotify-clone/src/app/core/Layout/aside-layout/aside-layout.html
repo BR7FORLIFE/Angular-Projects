@@ -17,20 +17,36 @@
   <article
     class="w-full flex justify-start pl-4 gap-2 text-white/90 font-medium text-sm text-center"
   >
-    <button class="bg-[#333333] px-5 py-[3px] rounded-xl">Playlist</button>
-    <button class="bg-[#333333] px-5 py-[3px] rounded-xl">Artist</button>
+    <button
+      class="bg-[#333333] px-5 py-[3px] rounded-xl transform hover:scale-110 duration-300 ease-in-out"
+    >
+      Playlist
+    </button>
+    <button
+      class="bg-[#333333] px-5 py-[3px] rounded-xl transform hover:scale-110 duration-300 ease-in-out"
+    >
+      Artist
+    </button>
   </article>
 
   <div class="w-full h-auto inline-flex justify-around items-center gap-2">
-    <img src="assets/icons/search.png" alt="search.png" class="size-5" />
-    <button class="inline-flex items-center justify-center gap-2">
-      <span class="text-white/60 text-sm font-semibold font-mono">Recents</span>
-      <img src="assets/icons/menu.png" alt="menu icon" class="size-5 opacity-60" />
+    <img src="assets/icons/search.png" alt="search.png" class="size-5 object-cover" />
+    <button
+      class="group inline-flex items-center justify-center gap-2 transform hover:scale-110 duration-300 ease-in-out"
+    >
+      <span class="text-white/60 text-sm font-semibold font-mono group-hover:text-white"
+        >Recents</span
+      >
+      <img
+        src="assets/icons/menu.png"
+        alt="menu icon"
+        class="size-5 opacity-60 group-hover:opacity-100"
+      />
     </button>
   </div>
 
   <!--Aca ira el album de musica y si no hay album se coloca el mensaje que no hay-->
   <section class="mt-5 ml-4">
-    <playlistcomponent [listOfSongs]="playlist"/>
+    <playlistcomponent [listOfSongs]="playlist" />
   </section>
 </section>
