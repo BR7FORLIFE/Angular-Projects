@@ -1,11 +1,25 @@
 @for (playlist of listOfSongs; track $index; let i = $index) {
-<button class="inline-flex flex-row gap-3 mb-4" (click)="loadPlayList(i)">
+<button
+  class="group w-full h-auto inline-flex flex-row gap-3 mb-4 py-2 px-2 transition hover:bg-white duration-500 delay-100 ease-in-out rounded-sm"
+  (click)="loadPlayList(i)"
+>
   <picture class="mr-3">
-    <img [src]="playlist.presentacionImage" alt="presentacion image" class="size-14 rounded-xl" />
+    <img
+      [src]="playlist.presentacionImage"
+      alt="presentacion image"
+      class="size-14 rounded-xl object-cover"
+    />
   </picture>
   <div class="inline-flex flex-col justify-center items-center">
-    <span class="text-sm text-center text-white/80 font-semibold">{{ playlist.name }}</span>
-    <p class="text-sm text-center text-white/70 font-semibold">{{ playlist.description }}</p>
+    <span
+      class="text-sm text-center text-white/80 font-mono font-semibold transition group-hover:text-black duration-300 ease-in-out"
+      >{{ playlist.name }}</span
+    >
+    <p
+      class="text-sm text-center text-white/70 font-mono font-semibold transition group-hover:text-black duration-500 ease-in-out"
+    >
+      {{ playlist.description }}
+    </p>
   </div>
 </button>
 }
