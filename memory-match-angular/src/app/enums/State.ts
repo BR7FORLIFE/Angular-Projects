@@ -1,0 +1,4 @@
+export enum STATE_CARDS {
+  INTERROGATION,
+  REVEAL,
+}
