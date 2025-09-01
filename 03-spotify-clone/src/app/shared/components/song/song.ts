@@ -14,9 +14,7 @@ export class SongComponent implements OnInit, OnDestroy {
   constructor(private playlist: Playlist) {}
   ngOnInit() {
     this.subscription = this.playlist.playlist$.subscribe((playlist) => {
-      playlist.songs.forEach((song) => {
-        this.songs.push(song);
-      });
+      this.songs = playlist.songs;
     });
   }
 
