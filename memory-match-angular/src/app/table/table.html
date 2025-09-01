@@ -1,12 +1,15 @@
-<section class="size-auto grid grid-cols-4 gap-3">
+<section class="container size-auto grid grid-cols-4 gap-3">
   @for (card of cards; track $index) {
-  <button (click)="revealImage($index)">
+  <button (click)="ChangeState($index)">
     <article
-      class="size-44 flex justify-center items-center bg-white p-2 rounded-4xl transform hover:scale-110 transition duration-200 ease-in-out"
+      class="size-36 flex justify-center items-center bg-white p-2 rounded-4xl transform hover:scale-110 transition duration-200 ease-in-out origin-center"
     >
-      <img [src]="isSlug(card) ? card.imagesrc : card" alt="icon" class="size-36 bg-cover" />
+      @if (state[$index]) {
+      <img [src]="card.imagesrc" alt="icon" class="w-16 h-auto bg-cover" />
+      }@else {
+      <img [src]="interrogationImage" alt="icon" class="w-16 h-auto bg-cover" />
+      }
     </article>
   </button>
   }
 </section>
-  
