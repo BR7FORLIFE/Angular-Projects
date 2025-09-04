@@ -11,7 +11,7 @@
       "@models/*": ["app/models/*"],
       "@features/*": ["app/features/*"],
       "@constant/*": ["app/core/constant/*"],
-      "@services/*":["app/core/services/*"]
+      "@services/*":["app/core/services/*"],
     },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
