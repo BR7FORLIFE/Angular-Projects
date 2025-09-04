@@ -18,6 +18,7 @@
 
       <section class="mt-10 inline-flex flex-row gap-5 justify-center items-center">
         <button
+          (click)="showModal = true"
           class="relative size-12 rounded-full bg-green-500 transform transition hover:scale-110 hover:bg-green-300 duration-500 delay-100 ease-in-out"
         >
           <img
@@ -37,6 +38,10 @@
 
   <Song />
   <!--song component (para la musica)-->
-
-  }
+  @if(showModal && structurePlaylist){
+  <ModalPlayerSong
+    [structurePlaylist]="structurePlaylist"
+    (sendBooleanModal)="getEmitBooleanModal($event)"
+  />
+  } }
 </section>
