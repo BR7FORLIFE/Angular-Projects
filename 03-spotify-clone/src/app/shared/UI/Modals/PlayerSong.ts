@@ -5,6 +5,7 @@ import { Song } from '@models/song.model';
 @Component({
   selector: 'ModalPlayerSong',
   templateUrl: './PlayerSong.html',
+  styleUrl: './PlayerSong.css',
 })
 export class PlayerSong implements OnChanges, OnDestroy {
   @Input() structurePlaylist: StructurePlaylist;
