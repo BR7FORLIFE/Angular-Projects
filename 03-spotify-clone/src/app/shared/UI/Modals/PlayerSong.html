@@ -1,25 +1,67 @@
 <section
-  class="fixed inset-0 bg-black opacity-80 z-30 flex justify-center items-center"
+  class="fixed inset-0 bg-black/80 z-30 flex justify-center items-center"
   (click)="emitBoolean()"
 >
   <article
-    class="w-[1300px] h-[700px] rounded-xl border-2 border-white flex flex-col justify-between items-center"
+    class="w-96 h-auto py-5 rounded-xl bg-white border-2 border-white flex flex-col justify-between items-center shadow-lg shadow-gray-400"
     (click)="$event.stopPropagation()"
   >
-    <div class="w-full h-auto flex flex-row justify-between">
-      <span>hola</span>
-      <span>que tal</span>
+    <div class="w-full h-auto inline-flex justify-start items-center mb-2">
+      <h2 class="ml-4 text-black text-center font-mono font-semibold">hola</h2>
     </div>
-    <div class="w-full flex justify-center">
+
+    <!--previsualizacion de las distintas canciones-->
+    <section class="w-[350px] h-[400px] bg-black rounded-xl mb-10 shadow-lg shadow-gray-800">
       <video
-        src="assets/videos/large.mp4"
-        class="w-[1000px] h-[500px] object-contain"
+        src="assets/videos/soundwave.mp4"
         autoplay
         loop
+        muted
+        class="w-full h-full object-cover rounded-xl"
       ></video>
-    </div>
-    <section class="flex flex-row gap-4">
+    </section>
 
+    <!--reproductor de musica pausa, siguiente cancion anterior cancion etc-->
+    <section class="w-full h-auto">
+      <div class="w-full h-auto mb-3 px-3 flex flex-col items-start justify-center">
+        <div class="w-full h-auto flex flex-row justify-between items-center">
+          <span class="text-black font-mono font-light">0:00</span>
+          <span class="text-black font-mono font-light">1:30</span>
+        </div>
+        <input type="range" class="w-full h-2 bg-black rounded-lg appearance-none cursor-pointer" />
+      </div>
+
+      <div class="w-full h-auto inline-flex flex-row justify-around items-center">
+        <button>
+          <img src="assets/icons/aleatory.png" alt="aleatory imgage" class="size-8" />
+        </button>
+
+        <button>
+          <img
+            src="assets/icons/play.png"
+            alt="before song icon icon"
+            class="size-4 transform rotate-180"
+          />
+        </button>
+
+        <button
+          class="relative size-12 rounded-full bg-green-500 transform transition hover:scale-110 hover:bg-green-300 duration-500 delay-100 ease-in-out"
+        >
+          <img
+            src="assets/icons/triangule-right.png"
+            alt="triangule play reproductor"
+            class="absolute size-4 top-4 left-4.5"
+          />
+        </button>
+
+        <button>
+          <img src="assets/icons/play.png" alt="before song icon icon" class="size-4" />
+        </button>
+
+        <button>
+          <img src="assets/icons/repeat.png" alt="repeat icon" class="size-6" />
+        </button>
+      </div>
     </section>
   </article>
 </section>
