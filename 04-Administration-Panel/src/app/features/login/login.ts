@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './login.html',
 })
 export class Login {
-
+  
 }

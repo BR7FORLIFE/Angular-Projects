@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { Login } from './features/login/login';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [Login]
+  imports: [RouterOutlet]
 })
 export class App {
   protected readonly title = signal('04-Administration-Panel');
