@@ -1,12 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>04AdministrationPanel</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body class="container w-screen h-screen p-0 m-0 bg-white/60">
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>04AdministrationPanel</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    img-src 'self' data: blob: https://encrypted-tbn0.gstatic.com;
+    connect-src 'self' http://127.0.0.1:4200 http://localhost:4200 http://tus-endpoints.local;
+    font-src 'self' data: https://fonts.gstatic.com;
+  "
+    />
+  </head>
+  <body class="container w-screen h-screen p-0 m-0 bg-white/60">
+    <app-root></app-root>
+  </body>
 </html>
