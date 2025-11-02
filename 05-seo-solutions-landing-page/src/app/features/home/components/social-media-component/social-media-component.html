@@ -1,0 +1,15 @@
+<section class="w-full h-12 flex flex-row">
+  <div class="flex flex-row gap-4 justify-center items-center">
+    @for (info of socialMediaInfo; track info.id) {
+    <div class="inline-flex flex-row gap-2 justify-center items-center">
+      <img [src]="info.imgUrl" [alt]="info.alt" class="w-5 h-5" />
+      @if (info.description) {
+      <a [href]="">{{ info.description }}</a>
+      }
+    </div>
+    }
+  </div>
+  <div>
+    
+  </div>
+</section>
