@@ -1,55 +1,93 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  signal,
+  computed,
+  effect,
+  DestroyRef,
+  inject,
+} from '@angular/core';
+
 import { infoSlug, interrogationImageUrl } from '../constants/slags';
 import { Slug } from '../interfaces/Slug';
-import { STATE_CARDS } from '../enums/State';
 
 @Component({
   selector: 'app-table',
-  imports: [],
-  templateUrl: './table.html',
-})
-export class Table implements OnInit, OnDestroy {
-  protected cards: Slug[] = [];
-  protected interrogationImage = interrogationImageUrl;
-  protected state: boolean[] = [];
-
-  protected blockTable: boolean = false;
-  ngOnInit(): void {
-    this.cards = [...infoSlug, ...infoSlug];
-    this.state = Array(this.cards.length).fill(false);
-  }
-
-  ChangeState(index: number) {
-    if (this.blockTable || this.state[index]) return;
-
-    this.state[index] = true;
-
-    const indexToReveal = this.state
-      .map((state, index) => (state ? index : -1))
-      .filter((index) => index !== -1);
-
-    if (indexToReveal.length === 2) {
-      this.blockTable = true;
-      if (this.verifiedPair(indexToReveal)) {
-        this.blockTable = false;
-      } else {
-        setTimeout(() => {
-          this.restartCards(indexToReveal);
-          this.blockTable = false;
-        }, 1000);
+  standalone: true,
+  template: `
+    <section class="container size-auto grid grid-cols-4 gap-3">
+      @for (card of cards(); track $index) {
+      <button (click)="changeState($index)">
+        <article
+          class="size-28 flex justify-center items-center bg-white p-2 rounded-4xl transform hover:scale-110 transition duration-200 ease-in-out origin-center"
+        >
+          @if (state()[$index]) {
+          <img [src]="card.imagesrc" alt="icon" class="w-16 h-auto bg-cover" />
+          } @else {
+          <img
+            [src]="interrogationImage"
+            alt="icon"
+            class="w-16 h-auto bg-cover"
+          />
+          }
+        </article>
+      </button>
       }
+    </section>
+  `,
+})
+export class Table {
+  private destroyRef = inject(DestroyRef);
+  interrogationImage = interrogationImageUrl;
+  cards = signal<Slug[]>([]);
+  state = signal<boolean[]>([]);
+  blockTable = signal<boolean>(false);
+  revealedIndexes = computed(() =>
+    this.state()
+      .map((isOn, idx) => (isOn ? idx : -1))
+      .filter((idx) => idx !== -1)
+  );
+  constructor() {
+    effect(() => {
+      const revealed = this.revealedIndexes();
+      if (revealed.length === 2) {
+        this.handlePair(revealed);
+      }
+    });
+  }
+  ngOnInit(): void {
+    const duplicated = [...infoSlug, ...infoSlug];
+    this.cards.set(duplicated);
+    this.state.set(Array(duplicated.length).fill(false));
+  }
+  changeState(index: number) {
+    if (this.blockTable() || this.state()[index]) return;
+    this.state.update((arr) => {
+      const copy = [...arr];
+      copy[index] = true;
+      return copy;
+    });
+  }
+  private handlePair(indexes: number[]) {
+    this.blockTable.set(true);
+    const isPair = this.verifyPair(indexes);
+    if (isPair) {
+      this.blockTable.set(false);
+    } else {
+      setTimeout(() => {
+        this.resetCards(indexes);
+        this.blockTable.set(false);
+      }, 1000);
     }
   }
-
-  verifiedPair(indexToReveal: number[]): boolean {
-    return this.cards[indexToReveal[0]].id === this.cards[indexToReveal[1]].id;
+  private verifyPair(indexes: number[]): boolean {
+    const [i1, i2] = indexes;
+    return this.cards()[i1].id === this.cards()[i2].id;
   }
-
-  restartCards(indexToReveal: number[]) {
-    for (const idx of indexToReveal) {
-      this.state[idx] = false;
-    }
+  private resetCards(indexes: number[]) {
+    this.state.update((arr) => {
+      const copy = [...arr];
+      for (const idx of indexes) copy[idx] = false;
+      return copy;
+    });
   }
-
-  ngOnDestroy(): void {}
 }
