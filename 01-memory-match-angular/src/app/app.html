@@ -1,14 +1,18 @@
-<section class="w-screen h-auto flex flex-col justify-center items-center gap-12 overflow-y-auto">
-  <article>
-    <h1 class="text-2xl font-mono font-bold text-white text-center">
-      {{ title }}
-    </h1>
-    <p class="text-lg font-mono font-bold text-white text-center">
-      {{ description }}
-    </p>
-  </article>
-  <!--aca va el componente-->
-  <app-table></app-table>
+<section
+  class="w-screen h-screen overflow-y-auto flex justify-center items-center"
+>
+  <div class="flex flex-row justify-center items-center gap-12">
+    <article>
+      <h1 class="text-2xl font-mono font-bold text-white text-center">
+        {{ title }}
+      </h1>
+      <p class="text-lg font-mono font-bold text-white text-center">
+        {{ description }}
+      </p>
+    </article>
+    <!--aca va el componente-->
+    <app-table></app-table>
+  </div>
 </section>
 
 <router-outlet />
