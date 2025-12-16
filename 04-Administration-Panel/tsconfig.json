@@ -7,7 +7,7 @@
     "paths": {
       "@features/*": ["features/*"],
       "@core/*": ["core/*"],
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
     },
     "strict": true,
     "noImplicitOverride": true,
