@@ -6,7 +6,7 @@ import { FilmType } from '@core/schemas/film.schema';
 @Component({
   selector: 'app-statistics',
   imports: [BaseChartDirective],
-  template: ` <main class="w-[500px] h-auto p-12 bg-white rounded-xl shadow-xl">
+  template: ` <section class="w-[500px] h-auto p-12 bg-white rounded-xl shadow-xl">
     @defer (on viewport) {
     <div>
       <canvas
@@ -21,7 +21,7 @@ import { FilmType } from '@core/schemas/film.schema';
     } @loading {
     <p class="text-center mt-10 text-gray-400 animate-pulse">Preparando gráfico...</p>
     }
-  </main>`,
+  </section>`,
 })
 export class Statistics implements OnInit {
   @Input() data!: FilmType[] | null;
