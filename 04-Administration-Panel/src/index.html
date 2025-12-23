@@ -16,8 +16,21 @@
     default-src 'self';
     script-src 'self' 'unsafe-inline' 'unsafe-eval';
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    img-src 'self' data: blob: https://encrypted-tbn0.gstatic.com;
-    connect-src 'self' http://127.0.0.1:4200 http://localhost:4200 http://tus-endpoints.local;
+    img-src
+      'self'
+      data:
+      blob:
+      https://encrypted-tbn0.gstatic.com
+      https://img.icons8.com;
+    connect-src
+      'self'
+      http://localhost:4200
+      http://127.0.0.1:4200
+      ws://localhost:*
+      ws://127.0.0.1:*
+      wss://*
+      https://snilthokcuxiuuaruldx.supabase.co
+      https://*.supabase.co;
     font-src 'self' data: https://fonts.gstatic.com;
   "
     />
