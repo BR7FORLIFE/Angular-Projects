@@ -86,9 +86,9 @@ interface RegisterAuth {
             />
           </div>
 
-          @if(ErrorMessage().is){
+          @if(MessageHandler().is){
           <div>
-            <span>{{ ErrorMessage().message }}</span>
+            <span>{{ MessageHandler().message }}</span>
           </div>
           }
 
@@ -104,7 +104,12 @@ interface RegisterAuth {
         <!-- Footer -->
         <p class="text-center text-sm text-gray-600 mt-6">
           Already have an account?
-          <a (click)="goToLogin()" class="text-red-500 font-semibold hover:underline"> Login </a>
+          <a
+            (click)="goToLogin()"
+            class="text-red-500 font-semibold hover:underline hover:cursor-pointer"
+          >
+            Login
+          </a>
         </p>
       </article>
     </section>
@@ -115,7 +120,7 @@ export default class Register implements OnInit {
   protected form!: FormGroup<RegisterAuth>;
 
   //signals message
-  protected ErrorMessage = signal<{ is: boolean; message?: string }>({ is: false });
+  protected MessageHandler = signal<{ is: boolean; message?: string }>({ is: false });
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -141,23 +146,29 @@ export default class Register implements OnInit {
   }
 
   protected async registerUser() {
-    const { email, password, confirmPassword } = this.form.getRawValue();
+    const { email, password, confirmPassword, fullName } = this.form.getRawValue();
 
     if (this.form.invalid) {
-      this.ErrorMessage.set({ is: true, message: 'Verified all data!' });
+      this.MessageHandler.set({ is: true, message: 'Verified all data!' });
     }
 
     if (password != confirmPassword) {
-      this.ErrorMessage.set({ is: true, message: 'The password doesnt not match!' });
+      this.MessageHandler.set({ is: true, message: 'The password doesnt not match!' });
+      return;
     }
 
-    const { error } = await this.supabase.client.auth.signUp({ email, password });
+    const { error } = await this.supabase.client.auth.signUp({
+      email,
+      password,
+      options: { data: { fullname: this.form.get('fullName')!.value } },
+    });
 
     if (error) {
-      this.ErrorMessage.set({ is: true, message: 'Error to register!' });
+      this.MessageHandler.set({ is: true, message: 'Error to register!' });
+      return;
     }
 
-    this.ErrorMessage.set({ is: false });
+    this.MessageHandler.set({ is: false });
   }
 
   goToLogin() {
