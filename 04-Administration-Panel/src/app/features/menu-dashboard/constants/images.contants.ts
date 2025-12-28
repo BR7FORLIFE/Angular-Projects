@@ -1,9 +1,4 @@
-type sufixRuteImg = `icons/${string}.svg`;
-
-interface Images {
-  url: sufixRuteImg;
-  alt: string;
-}
+import { Images } from '@shared/types/types';
 
 export const images: Images[] = [
   {
