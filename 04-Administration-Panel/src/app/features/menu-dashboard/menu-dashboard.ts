@@ -5,26 +5,22 @@ import { images } from '@features/menu-dashboard/constants/images.contants';
   selector: 'app-menu-dashboard',
   imports: [],
   template: `
-    <section class="h-screen flex py-2">
+    <section class="flex h-screen py-2">
       <aside
-        class="fixed inset-y-0 left-0 w-16 h-2/3 bg-[#a6a6a6] text-black rounded-xl transform transition-transform -translate-x-96 ml-4 flex flex-col items-center md:translate-x-0 md:static"
+        class="fixed inset-y-0 left-0 ml-4 flex h-2/3 w-16 -translate-x-96 flex-col items-center rounded-xl bg-[#a6a6a6] text-black transition-transform md:static md:translate-x-0"
       >
         <article
-          class="my-4 w-2/3 h-3/4 flex flex-col gap-4 justify-center items-center rounded-xl  bg-[#242426]"
+          class="my-4 flex h-3/4 w-2/3 flex-col items-center justify-center gap-4 rounded-xl  bg-[#242426]"
         >
           @for(image of images; track $index){
           <div>
-            <img
-              [src]="image.url"
-              [alt]="image.alt"
-              class="w-6 h-auto object-contain text-white"
-            />
+            <img [src]="image.url" [alt]="image.alt" class="h-auto w-6 object-contain text-white" />
           </div>
           }
         </article>
       </aside>
       <div class="flex-1">
-        <img [src]="'icons/menu.svg'" [alt]="'menu icon'" class="w-8 h-auto md:hidden" />
+        <img [src]="'icons/menu.svg'" [alt]="'menu icon'" class="h-auto w-8 md:hidden" />
       </div>
     </section>
   `,
