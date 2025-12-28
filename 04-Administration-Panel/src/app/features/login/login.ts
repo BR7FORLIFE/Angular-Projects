@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SupabaseClientTs } from '@core/supabase/client/supabase.client.service';
 import {
@@ -15,49 +15,53 @@ interface LoginAuth {
 }
 
 @Component({
-  selector: 'login',
+  selector: 'app-login',
   imports: [ReactiveFormsModule],
   template: `
-    <section class="min-h-screen flex items-center justify-center bg-gray-100">
-      <article class="w-full max-w-md bg-white rounded-2xl shadow-lg px-8 py-10">
+    <section class="flex min-h-screen items-center justify-center bg-gray-100">
+      <article class="w-full max-w-md rounded-2xl bg-white px-8 py-10 shadow-lg">
         <!-- Header -->
-        <header class="flex items-center justify-between mb-8">
+        <header class="mb-8 flex items-center justify-between">
           <h1 class="text-xl font-semibold text-gray-800">IU SOCIAL</h1>
           <button
             type="button"
-            class="text-sm text-gray-600 border border-gray-300 rounded-lg px-4 py-1.5 hover:bg-gray-100 transition"
+            class="rounded-lg border border-gray-300 px-4 py-1.5 text-sm text-gray-600 transition hover:bg-gray-100"
           >
             Language
           </button>
         </header>
 
         <!-- Welcome -->
-        <div class="text-center mb-8">
-          <h2 class="text-3xl font-semibold text-gray-900 mb-1">Welcome back 👋</h2>
+        <div class="mb-8 text-center">
+          <h2 class="mb-1 text-3xl font-semibold text-gray-900">Welcome back 👋</h2>
           <p class="text-gray-500">Login to your IUSOCIAL account</p>
         </div>
 
         <!-- Form -->
         <form class="space-y-4" [formGroup]="form" (submit)="loginUser()">
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1"> Email </label>
+            <label for="email" class="mb-1 block text-sm font-medium text-gray-700"> Email </label>
             <input
+              id="email"
               formControlName="email"
               type="email"
               placeholder="you@example.com"
               class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm
-                 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-300"
+                 focus:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-400"
             />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1"> Password </label>
+            <label for="password" class="mb-1 block text-sm font-medium text-gray-700">
+              Password
+            </label>
             <input
+              id="password"
               formControlName="password"
               type="password"
               placeholder="••••••••"
               class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm
-                 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-300"
+                 focus:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-400"
             />
           </div>
 
@@ -65,7 +69,7 @@ interface LoginAuth {
           <span>{{ MessageHandler().message }}</span>
           }
 
-          <div class="flex justify-between items-center text-sm">
+          <div class="flex items-center justify-between text-sm">
             <label class="flex items-center gap-2 text-gray-600">
               <input type="checkbox" class="rounded" />
               Remember me
@@ -75,43 +79,43 @@ interface LoginAuth {
 
           <button
             type="submit"
-            class="w-full bg-red-500 text-white rounded-xl py-2.5 font-semibold
-               hover:bg-red-600 transition"
+            class="w-full rounded-xl bg-red-500 py-2.5 font-semibold text-white
+               transition hover:bg-red-600"
           >
             Login
           </button>
         </form>
 
         <!-- Divider -->
-        <div class="flex items-center gap-3 my-6">
-          <div class="flex-1 h-px bg-gray-300"></div>
+        <div class="my-6 flex items-center gap-3">
+          <div class="h-px flex-1 bg-gray-300"></div>
           <span class="text-sm text-gray-400">or</span>
-          <div class="flex-1 h-px bg-gray-300"></div>
+          <div class="h-px flex-1 bg-gray-300"></div>
         </div>
 
         <!-- Social -->
         <button
           type="button"
-          class="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-xl py-2
-             hover:bg-gray-50 transition"
+          class="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-300 py-2
+             transition hover:bg-gray-50"
         >
           <img
             src="https://img.icons8.com/?size=512&id=17949&format=png"
-            class="w-5 h-5"
+            class="size-5"
             alt="Google"
           />
           <span class="text-sm font-medium text-gray-700"> Continue with Google </span>
         </button>
 
         <!-- Footer -->
-        <p class="text-center text-sm text-gray-600 mt-6">
+        <p class="mt-6 text-center text-sm text-gray-600">
           Don’t have an account?
-          <a
+          <button
             (click)="goToRegister()"
-            class="text-red-500 font-semibold hover:underline hover:cursor-pointer"
+            class="font-semibold text-red-500 hover:cursor-pointer hover:underline"
           >
             Sign up
-          </a>
+          </button>
         </p>
       </article>
     </section>
@@ -121,16 +125,15 @@ export default class Login implements OnInit {
   protected form!: FormGroup<LoginAuth>;
   protected MessageHandler = signal<{ is: boolean; message?: string }>({ is: false });
 
-  constructor(
-    private fb: NonNullableFormBuilder,
-    private router: Router,
-    private supabase: SupabaseClientTs
-  ) {}
+  //inyeccciones
+  private formbuilder = inject(NonNullableFormBuilder);
+  private router = inject(Router);
+  private supabase = inject(SupabaseClientTs);
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      email: this.fb.control('', { validators: [Validators.required, Validators.email] }),
-      password: this.fb.control('', { validators: [Validators.required] }),
+    this.form = this.formbuilder.group({
+      email: this.formbuilder.control('', { validators: [Validators.required, Validators.email] }),
+      password: this.formbuilder.control('', { validators: [Validators.required] }),
     });
   }
 
@@ -139,7 +142,7 @@ export default class Login implements OnInit {
 
     const { email, password } = this.form.getRawValue();
 
-    const { data, error } = await this.supabase.client.auth.signInWithPassword({ email, password });
+    const { error } = await this.supabase.client.auth.signInWithPassword({ email, password });
 
     if (error) {
       this.MessageHandler.set({ is: true, message: 'Error to login!' });

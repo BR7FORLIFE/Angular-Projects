@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   ReactiveFormsModule,
@@ -21,68 +21,78 @@ interface RegisterAuth {
   selector: 'app-register',
   imports: [ReactiveFormsModule],
   template: `
-    <section class="min-h-screen flex items-center justify-center bg-gray-100">
-      <article class="w-full max-w-md bg-white rounded-2xl shadow-lg px-8 py-10">
+    <section class="flex min-h-screen items-center justify-center bg-gray-100">
+      <article class="w-full max-w-md rounded-2xl bg-white px-8 py-10 shadow-lg">
         <!-- Header -->
-        <header class="flex items-center justify-between mb-8">
+        <header class="mb-8 flex items-center justify-between">
           <h1 class="text-xl font-semibold text-gray-800">IU SOCIAL</h1>
           <button
             type="button"
-            class="text-sm text-gray-600 border border-gray-300 rounded-lg px-4 py-1.5 hover:bg-gray-100 transition"
+            class="rounded-lg border border-gray-300 px-4 py-1.5 text-sm text-gray-600 transition hover:bg-gray-100"
           >
             Language
           </button>
         </header>
 
         <!-- Welcome -->
-        <div class="text-center mb-8">
-          <h2 class="text-3xl font-semibold text-gray-900 mb-1">Create account ✨</h2>
+        <div class="mb-8 text-center">
+          <h2 class="mb-1 text-3xl font-semibold text-gray-900">Create account ✨</h2>
           <p class="text-gray-500">Join IUSOCIAL in just a few steps</p>
         </div>
 
         <!-- Form -->
         <form [formGroup]="form" (submit)="registerUser()" class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1"> Full name </label>
+            <label for="fullname" class="mb-1 block text-sm font-medium text-gray-700">
+              Full name
+            </label>
             <input
+              id="fullname"
               type="text"
               placeholder="John Doe"
               formControlName="fullName"
               class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm
-                 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-300"
+                 focus:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-400"
             />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1"> Email </label>
+            <label for="email" class="mb-1 block text-sm font-medium text-gray-700"> Email </label>
             <input
+              id="email"
               type="email"
               placeholder="you@example.com"
               formControlName="email"
               class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm
-                 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-300"
+                 focus:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-400"
             />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1"> Password </label>
+            <label for="password" class="mb-1 block text-sm font-medium text-gray-700">
+              Password
+            </label>
             <input
+              id="password"
               type="password"
               placeholder="Minimum 8 characters"
               formControlName="password"
               class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm
-                 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-300"
+                 focus:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-400"
             />
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1"> Confirm password </label>
+            <label for="confirmpassword" class="mb-1 block text-sm font-medium text-gray-700">
+              Confirm password
+            </label>
             <input
+              id="confirmpassword"
               type="password"
               placeholder="Repeat password"
               formControlName="confirmPassword"
               class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm
-                 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-300"
+                 focus:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-400"
             />
           </div>
 
@@ -94,22 +104,22 @@ interface RegisterAuth {
 
           <button
             type="submit"
-            class="w-full bg-red-500 text-white rounded-xl py-2.5 font-semibold
-               hover:bg-red-600 transition"
+            class="w-full rounded-xl bg-red-500 py-2.5 font-semibold text-white
+               transition hover:bg-red-600"
           >
             Create account
           </button>
         </form>
 
         <!-- Footer -->
-        <p class="text-center text-sm text-gray-600 mt-6">
+        <p class="mt-6 text-center text-sm text-gray-600">
           Already have an account?
-          <a
+          <button
             (click)="goToLogin()"
-            class="text-red-500 font-semibold hover:underline hover:cursor-pointer"
+            class="font-semibold text-red-500 hover:cursor-pointer hover:underline"
           >
             Login
-          </a>
+          </button>
         </p>
       </article>
     </section>
@@ -122,31 +132,30 @@ export default class Register implements OnInit {
   //signals message
   protected MessageHandler = signal<{ is: boolean; message?: string }>({ is: false });
 
-  constructor(
-    private fb: NonNullableFormBuilder,
-    private supabase: SupabaseClientTs,
-    private router: Router
-  ) {}
+  //inyections
+  private formbuilder = inject(NonNullableFormBuilder);
+  private supabase = inject(SupabaseClientTs);
+  private router = inject(Router);
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      fullName: this.fb.control('', {
+    this.form = this.formbuilder.group({
+      fullName: this.formbuilder.control('', {
         validators: [Validators.required, Validators.minLength(6)],
       }),
-      email: this.fb.control('', {
+      email: this.formbuilder.control('', {
         validators: [Validators.required, Validators.email],
       }),
-      password: this.fb.control('', {
+      password: this.formbuilder.control('', {
         validators: [Validators.required],
       }),
-      confirmPassword: this.fb.control('', {
+      confirmPassword: this.formbuilder.control('', {
         validators: [Validators.required],
       }),
     });
   }
 
   protected async registerUser() {
-    const { email, password, confirmPassword, fullName } = this.form.getRawValue();
+    const { email, password, confirmPassword } = this.form.getRawValue();
 
     if (this.form.invalid) {
       this.MessageHandler.set({ is: true, message: 'Verified all data!' });
