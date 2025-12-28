@@ -1,12 +1,12 @@
-import { Component, ViewChild, Input, OnInit } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
-import { ChartConfiguration, ChartData, ChartEvent } from 'chart.js';
+import { ChartConfiguration, ChartData } from 'chart.js';
 import { FilmType } from '@core/schemas/film.schema';
 
 @Component({
   selector: 'app-statistics',
   imports: [BaseChartDirective],
-  template: ` <section class="w-[500px] h-auto p-12 bg-white rounded-xl shadow-xl">
+  template: ` <section class="h-auto w-[500px] rounded-xl bg-white p-12 shadow-xl">
     @defer (on viewport) {
     <div>
       <canvas
@@ -17,13 +17,13 @@ import { FilmType } from '@core/schemas/film.schema';
       ></canvas>
     </div>
     } @placeholder {
-    <p class="text-center mt-10 text-gray-400">Cargando estadísticas...</p>
+    <p class="mt-10 text-center text-gray-400">Cargando estadísticas...</p>
     } @loading {
-    <p class="text-center mt-10 text-gray-400 animate-pulse">Preparando gráfico...</p>
+    <p class="mt-10 animate-pulse text-center text-gray-400">Preparando gráfico...</p>
     }
   </section>`,
 })
-export class Statistics implements OnInit {
+export class Statistics {
   @Input() data!: FilmType[] | null;
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective<'bar'>;
 
@@ -46,6 +46,4 @@ export class Statistics implements OnInit {
     datasets: [{ data: [65, 59, 80, 81, 56, 55, 40, 220], label: 'Series A' }],
   };
   public barChartType = 'bar' as const;
-
-  ngOnInit(): void {}
 }
