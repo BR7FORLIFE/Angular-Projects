@@ -6,7 +6,7 @@ import { FilmType } from '@core/schemas/film.schema';
 @Component({
   selector: 'app-statistics',
   imports: [BaseChartDirective],
-  template: ` <section class="h-auto w-[500px] rounded-xl bg-white p-12 shadow-xl">
+  template: ` <section class="h-auto w-125 rounded-xl bg-white p-12 shadow-xl">
     @defer (on viewport) {
     <div>
       <canvas
