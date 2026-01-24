@@ -1,3 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "tailwindcss";
+
+@font-face {
+    font-family: one;
+    src: url('../public/fonts/641f205c92758f183ade6e6e_Inter-VariableFont_slnt,wght.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: two;
+    src: url('../public/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
