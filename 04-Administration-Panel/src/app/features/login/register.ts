@@ -52,7 +52,7 @@ interface RegisterAuth {
               placeholder="John Doe"
               formControlName="fullName"
               class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm
-                 focus:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-400"
+                 focus:border-red-300 focus:ring-2 focus:ring-red-400 focus:outline-none"
             />
           </div>
 
@@ -64,7 +64,7 @@ interface RegisterAuth {
               placeholder="you@example.com"
               formControlName="email"
               class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm
-                 focus:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-400"
+                 focus:border-red-300 focus:ring-2 focus:ring-red-400 focus:outline-none"
             />
           </div>
 
@@ -78,7 +78,7 @@ interface RegisterAuth {
               placeholder="Minimum 8 characters"
               formControlName="password"
               class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm
-                 focus:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-400"
+                 focus:border-red-300 focus:ring-2 focus:ring-red-400 focus:outline-none"
             />
           </div>
 
@@ -92,7 +92,7 @@ interface RegisterAuth {
               placeholder="Repeat password"
               formControlName="confirmPassword"
               class="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm
-                 focus:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-400"
+                 focus:border-red-300 focus:ring-2 focus:ring-red-400 focus:outline-none"
             />
           </div>
 

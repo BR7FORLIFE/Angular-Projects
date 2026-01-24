@@ -7,7 +7,7 @@ import { images } from '@features/menu-dashboard/constants/images.contants';
   template: `
     <section>
       <aside
-        class="pointer-events-auto fixed top-4 left-4 z-30 flex h-2/3 w-16 flex-col items-center justify-between rounded-xl bg-[#a6a6a6] transition-transform duration-300 md:static md:h-[calc(100vh-2rem)] md:translate-x-0 shadow-[8px_2px_61px_7px_rgba(139,139,139,1)]"
+        class="pointer-events-auto fixed top-4 left-4 z-30 flex h-2/3 w-16 flex-col items-center justify-between rounded-xl bg-[#a6a6a6] shadow-[8px_2px_61px_7px_rgba(139,139,139,1)] transition-transform duration-300 md:static md:h-[calc(100vh-2rem)] md:translate-x-0"
         [class.-translate-x-96]="!isOpen()"
         [class.translate-x-0]="isOpen()"
       >
