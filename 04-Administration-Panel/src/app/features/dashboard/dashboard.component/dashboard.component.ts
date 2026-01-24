@@ -9,10 +9,10 @@ import Profile from '@features/profile/profile.component';
   selector: 'app-dashboard.component',
   imports: [MenuDashboard, Profile, RouterOutlet],
   template: `
-    <div class="h-screen w-screen overflow-hidden bg-[#949494] p-4">
+    <div class="h-screen w-screen overflow-scroll md:overflow-hidden bg-[#949494] p-4">
       <div class="relative min-h-screen md:flex md:gap-4">
         <app-menu-dashboard></app-menu-dashboard>
-        <div class="flex-1 flex flex-col md:flex-row min-h-screen gap-4">
+        <div class="flex min-h-screen flex-1 flex-col gap-4 md:flex-row">
           <app-profile></app-profile>
 
           <section class="flex-1 overflow-auto">
