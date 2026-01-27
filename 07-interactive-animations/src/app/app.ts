@@ -1,6 +1,6 @@
 import { Component, signal, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { InfoLabel } from './components/labelInfo.component';
 import { navurl, imagePresentation, labelInfo } from './constants/constant';
@@ -31,10 +31,9 @@ gsap.registerPlugin(ScrollTrigger);
       <!--main content-->
       <main class="w-dvw flex flex-col">
         <!--hero-->
-        <section class="w-full h-dvh flex flex-col items-center justify-center">
-          <div>
+        <section #hero class="w-full h-dvh flex flex-col items-center justify-center">
+          <div #description>
             <img
-              #description
               [src]="'images/description.svg'"
               alt="description icon"
               class="w-154 h-auto object-cover"
@@ -195,7 +194,11 @@ gsap.registerPlugin(ScrollTrigger);
             <a href="#" class="text-purple-500">Read our blog post on UX Design</a>
           </div>
           <div class="relative w-1/3 h-full">
-            <img src="images/monitor.png" alt="monitor icon" class="absolute inset-0 top-18 left-24 w-auto h-119" />
+            <img
+              src="images/monitor.png"
+              alt="monitor icon"
+              class="absolute inset-0 top-18 left-24 w-auto h-119"
+            />
             <img
               src="images/content-monitor.png"
               alt="monitor icon"
@@ -216,50 +219,58 @@ export class App implements AfterViewInit {
   @ViewChild('scene', { static: true }) scene!: ElementRef;
   @ViewChild('header', { static: true }) header!: ElementRef;
   @ViewChild('description', { static: true }) description!: ElementRef;
+  @ViewChild('hero', { static: true }) hero!: ElementRef;
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    gsap.registerPlugin(ScrollTrigger);
 
-  // ngAfterViewInit(): void {
-  //   //register my own effects
-  //   gsap.registerEffect({
-  //     name: 'up',
-  //     effect: (target: HTMLElement, config: gsap.TweenVars) => {
-  //       return gsap.to(target, {
-  //         duration: config.duration,
-  //         yPercent: config.yPercent,
-  //         ease: config.ease,
-  //       });
-  //     },
-  //   });
+    const headerEl = this.header.nativeElement;
 
-  //   //use effect
-  //   //gsap.effects['up'](this.header.nativeElement, {})
+    //animacion para el header
+    gsap.set(headerEl, { y: 0 });
 
-  //   const tl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: this.scene.nativeElement,
-  //       start: 'top top',
-  //       end: 'max',
-  //       scrub: 1.4,
-  //       pin: true,
-  //       anticipatePin: 1,
-  //       markers: true,
-  //     },
-  //   });
+    ScrollTrigger.create({
+      start: 0,
+      end: 'max',
+      onUpdate: (self) => {
+        if (self.direction === 1) {
+          // scroll down
+          gsap.to(headerEl, {
+            y: -120,
+            duration: 1,
+            ease: 'power3.out',
+            overwrite: true,
+          });
+        } else {
+          //scroll up
+          gsap.to(headerEl, {
+            y: 0,
+            duration: 1.5,
+            ease: 'power3.out',
+            overwrite: true,
+          });
+        }
+      },
+    });
 
-  //   tl.to(this.header.nativeElement, {
-  //     duration: 0.05,
-  //     yPercent: -100,
-  //     ease: 'circ.out',
-  //   });
+    //animacion para hero - description
+    const tlDescription = gsap.timeline({
+      scrollTrigger: {
+        trigger: this.hero.nativeElement,
+        start: 'top top',
+        end: () => `+=${window.innerHeight}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        pinSpacing: true,
+        markers: true,
+      },
+    });
 
-  //   tl.to(
-  //     this.description.nativeElement,
-  //     {
-  //       scale: 1.5,
-  //       ease: 'circ.in',
-  //     },
-  //     '<',
-  //   );
-  // }
+    tlDescription.fromTo(
+      this.description.nativeElement,
+      { scale: 1 },
+      { scale: 1.3, ease: 'power2.in', duration: 0.5 },
+    );
+  }
 }
