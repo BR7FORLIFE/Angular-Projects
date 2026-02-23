@@ -1,59 +1,69 @@
-# 08RealTimeDashboardSeniorTopics
+# 🚀 Real-Time Analytics Dashboard (Senior-Level Frontend Architecture)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+## 📌 Overview
 
-## Development server
+This project is a high-performance, real-time analytics dashboard designed to simulate production-grade frontend engineering challenges.
 
-To start a local development server, run:
+It focuses on:
 
-```bash
-ng serve
-```
+- Handling **50,000+ records**
+- Processing **100+ updates per second**
+- Maintaining **O(1) updates**
+- Preventing UI blocking
+- Managing memory efficiently
+- Understanding JavaScript’s event loop and concurrency model
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+⚠️ This project prioritizes architecture and performance over UI styling.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+# 🎯 Project Goals
 
-```bash
-ng generate component component-name
-```
+The purpose of this project is to deeply understand:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Advanced data structures (`Map`, `Set`, indexed storage)
+- Algorithmic optimization in UI systems
+- Time and space complexity in client-side apps
+- Memory management in browsers
+- Event loop mechanics and scheduling
+- Rendering performance optimization
+- Large dataset virtualization
+- State normalization patterns
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+# 🏗 System Architecture
 
-To build the project run:
+Real-Time Data Generator (Simulated Stream)
+↓
+State Normalization Layer
+↓
+Indexing Layer (Maps & Sets)
+↓
+Selector & Memoization Layer
+↓
+Virtualized Rendering Layer
+↓
+Performance Monitoring Panel
 
-```bash
-ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+# 🧠 Core Architecture Principles
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## 1️⃣ Data Normalization
 
-## Running end-to-end tests
+We do NOT store data as:
 
-For end-to-end (e2e) testing, run:
+```ts
+records = [{...}, {...}, {...}]
 
-```bash
-ng e2e
-```
+{
+  recordsById: Map<string, Record>,
+  recordIds: string[],
+  categoryIndex: Map<string, Set<string>>
+}
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
