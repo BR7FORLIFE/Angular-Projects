@@ -51,23 +51,21 @@ export class InfoLabel implements AfterViewInit {
     const labelEl = this.label.nativeElement;
     const sceneEl = this.scene.nativeElement;
 
-    gsap.fromTo(
-      labelEl,
-      {
-        xPercent: this.align === 'right' ? 100 : -100,
-        autoAlpha: 0,
+    gsap.set(labelEl, {
+      xPercent: this.align === 'right' ? 100 : -100,
+      autoAlpha: 0,
+    });
+
+    gsap.to(labelEl, {
+      xPercent: 0,
+      autoAlpha: 1,
+      ease: 'power4.out',
+      scrollTrigger: {
+        trigger: this.scene.nativeElement,
+        start: 'bottom bottom',
+        toggleActions: 'play none none reverse',
+        markers: true,
       },
-      {
-        xPercent: 0,
-        autoAlpha: 1,
-        ease: 'power4.out',
-        scrollTrigger: {
-          trigger: sceneEl,
-          start: 'top 80%',
-          end: 'top 50%',
-          scrub: 1,
-        },
-      },
-    );
+    });
   }
 }

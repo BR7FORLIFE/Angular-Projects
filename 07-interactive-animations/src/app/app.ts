@@ -263,7 +263,6 @@ export class App implements AfterViewInit {
         pin: true,
         anticipatePin: 1,
         pinSpacing: true,
-        markers: true,
       },
     });
 
